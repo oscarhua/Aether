@@ -74,7 +74,12 @@ int main() {
 	       input.get_nLatsGeo(),
 	       input.get_nAltsGeo(),
 	       nGeoGhosts);
+    
+    // EXERCISE: init_geo_grid.cpp
+    // call Report::student_checker_function_name() with iFunctionNumber = 4 on line 611
     DidWork = gGrid.init_geo_grid(quadtree, planet, input, report);
+
+
     MPI_Barrier(aether_comm);
     if (!DidWork)
       throw std::string("init_geo_grid failed!");
@@ -115,8 +120,11 @@ int main() {
     }
 
     // This is for the initial output.  If it is not a restart, this will go:
-    if (time.check_time_gate(input.get_dt_output(0)))
-      iErr = output(neutrals, ions, gGrid, time, planet, input, report);
+    if (time.check_time_gate(input.get_dt_output(0))) {
+        // EXERCISE: output.cpp
+        // call Report::student_checker_function_name() with iFunctionNumber = 3 on line 59
+        iErr = output(neutrals, ions, gGrid, time, planet, input, report);
+    }
 
     // This is advancing now... We are not coupling, so set dt_couple to the
     // end of the simulation
@@ -136,6 +144,11 @@ int main() {
 
       // Increment until the intermediate time:
       while (time.get_current() < time.get_intermediate())
+
+    // EXERCISE: advance.cpp
+    // call Report::print() with (1) directly on line 36
+    // call Report::print() with (2) by calc_euv() on line 44
+    // call Report::student_checker_function_name() with iFunctionNumber = 3 by output() on line 84
 	iErr = advance(planet,
 		       gGrid,
 		       time,

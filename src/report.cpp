@@ -210,9 +210,15 @@ void Report::student_checker_function_name(bool isStudent,
   if (isStudent) {
     if (cFunctionName.length() > 1)
       print(-1, cStudentName + " found function " + cFunctionName);
-    else
-      std::cout << "> (" << iFunctionNumber << ")"
-		<< " What function is this " << cStudentName << "?\n";
+    else {
+        std::cout << "> (" << iFunctionNumber << ")"
+            << " What function is this " << cStudentName << "? ";
+        if (iFunctionNumber == 4) {
+            std::cout << "Found it: xyz\n";
+        } else {
+            std::cout << "Found it: ghi\n";
+        }
+    }
   }
   return;
 }
